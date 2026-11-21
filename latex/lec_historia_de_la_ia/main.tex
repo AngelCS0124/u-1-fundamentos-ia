@@ -1,0 +1,163 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage[style=apa, backend=biber]{biblatex}
+
+\addbibresource{referencias.bib}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\huge \textbf{Historia de la IA}} \\[1cm]
+    {\Large Lectura analítica} \\[2cm]
+    
+    {\large Alumno: Angel Gabriel Coronado Sánchez} \\[1cm]
+    {\large Asignatura: Fundamentos de la Inteligencia Artificial} \\[1cm]
+    {\large Fecha: \today}
+    
+    \vfill
+    {\large Universidad Politécnica de Victoria}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Introducción}
+
+Este trabajo presenta un recorrido sencillo por la evolución de la inteligencia artificial, explicando cómo pasó de ser una disciplina puramente teórica y basada en reglas lógicas escritas a mano, a convertirse en la tecnología basada en datos que usamos hoy en día. El objetivo es entender de forma clara los hitos clave de este camino y cómo se conectan las ideas del pasado con las herramientas actuales.
+
+Para que la lectura sea fluida, el documento se divide en tres partes. Primero, en el desarrollo cronológico, veremos desde los cimientos lógicos de Alan Turing y su famoso test, pasando por el auge y la posterior caída de la IA Simbólica debido a sus límites para entender el mundo real, hasta llegar al nacimiento del Machine Learning moderno y los Transformers. En la segunda sección, analizamos cómo el hardware actual y la optimización de los algoritmos permitieron que las redes neuronales profundas salieran del papel y se volvieran una realidad. Finalmente, cerramos con el paradigma de TinyML, explicando cómo hoy en día es posible meter estos modelos complejos dentro de microcontroladores muy pequeños y baratos que consumen una fracción de energía.
+
+\section{Desarrollo cronológico de la IA}
+
+\subsection{Bases teóricas y el Test de Turing: La conceptualización de la Máquina Universal}
+
+El origen del pensamiento computacional y la inteligencia artificial moderna encuentra su primer pilar formal en los planteamientos matemáticos de Alan Turing. En 1936, mediante su célebre artículo sobre los números computables, Turing introdujo una abstracción matemática capaz de procesar símbolos en una cinta infinita de acuerdo con reglas lógicas preestablecidas y transiciones de estados discretos \parencite{zhang2023turing}. El valor trascendental de esta formulación radica en la definición teórica de la \textbf{Máquina de Turing Universal (UTM)}, un modelo que demostró que un único hardware reprogramable era matemáticamente capaz de emular el funcionamiento de cualquier otra máquina dedicada si se le proveían las instrucciones codificadas en su cinta \parencite{zhang2023turing}. Esta idea sentó los principios lógicos fundamentales de los ordenadores de propósito general \parencite{zhang2023turing}.
+
+Trasladando este postulado abstracto hacia la psicología cognitiva y la posibilidad de que el pensamiento humano pudiese codificarse bajo principios algebraicos análogos, Turing dio un giro pragmático al debate en 1950 en su artículo \textit{"Computing Machinery and Intelligence"}. En lugar de perderse en discusiones metafísicas irresolubles sobre la naturaleza del pensamiento, formuló el \textbf{Test de Turing} o Juego de la Imitación \parencite{haenlein2019brief, zhang2023turing}. Este modelo proponía un estándar conductual evaluado mediante una interfaz de texto indirecta: si un ser humano es incapaz de discriminar si su interlocutor en una conversación fluida es una persona o un algoritmo, la máquina debe catalogarse como inteligente \parencite{haenlein2019brief}. De esta forma, el procesamiento del lenguaje y la imitación de la conducta simbólica humana se consolidaron como el primer gran norte de la disciplina \parencite{haenlein2019brief}.
+
+\subsection{La era de la IA Simbólica y el paradigma de las reglas explícitas (Top-Down)}
+
+El nacimiento institucional del campo se formalizó en el histórico proyecto de investigación de verano en \textbf{Dartmouth (DSRPAI) en 1956}, un encuentro liderado por figuras como Marvin Minsky y John McCarthy con el propósito explícito de estructurar sistemas mecánicos capaces de simular procesos de aprendizaje y resolución de problemas de corte cerebral \parencite{haenlein2019brief, buchanan2005very}. Las primeras décadas de desarrollo estuvieron marcadas por el paradigma de la \textbf{IA Simbólica}, bajo una perspectiva estrictamente vertical o de arriba hacia abajo (\textit{top-down}) \parencite{haenlein2019brief}. Esta premisa asumía de manera intuitiva que la mente humana opera como un procesador deductivo de símbolos discretos gobernado por complejas cadenas lógicas de hipótesis del tipo ``si-entonces'' (\textit{if-then}) \parencite{haenlein2019brief}.
+
+Durante esta fase, la comunidad desarrolló programas pioneros de resolución generalizada de problemas, tales como el \textit{General Problem Solver} (GPS) desarrollado por Herbert Simon y Allen Newell \parencite{haenlein2019brief, buchanan2005very}. \textcite{buchanan2005very} explica que Simon formuló entonces un principio central para el campo heurístico denominado la \textbf{satisfacción heurística (\textit{satisficing})}: dado que explorar de manera exhaustiva un árbol infinito de soluciones resulta computacionalmente prohibitivo, el cerebro recurre a heurísticas intuitivas que permiten acotar el campo de búsqueda para seleccionar alternativas que, si bien no son óptimas matemáticamente, resultan altamente satisfactorias y prácticas para la supervivencia \parencite{buchanan2005very}. 
+
+Bajo este enfoque de programación heurística rígida y manipulación declarativa de conocimiento formal, el movimiento evolucionó hacia los llamados \textbf{sistemas expertos} \parencite{haenlein2019brief, buchanan2005very}. Proyectos emblemáticos como Dendral en los años 60 o Mycin en los 70 demostraron que un motor de inferencia alimentado con conocimiento hiperespecializado de expertos humanos podía competir y superar a los profesionales en diagnósticos específicos \parencite{buchanan2005very}. 
+
+El éxito más sonado y a la vez la manifestación final de la potencia bruta de este paradigma ocurrió en 1997, cuando la supercomputadora \textbf{Deep Blue} de IBM derrotó al campeón mundial de ajedrez Garry Kasparov calculando más de 200 millones de jugadas por segundo utilizando algoritmos de búsqueda en árbol \parencite{haenlein2019brief, buchanan2005very}. Sin embargo, esta victoria simbólica ocultaba una profunda debilidad conceptual: el sistema experto era sumamente efectivo en entornos lógicos structured formalmente bajo reglas cerradas, pero resultaba inútil en tareas de percepción informal, tales como discernir la voz de un hablante en un entorno ruidoso o distinguir caras bajo variaciones mínimas de iluminación \parencite{haenlein2019brief}.
+
+\subsection{Expectativas desmedidas y colapso financiero: Los Inviernos de la IA}
+
+La enormecrepancia entre el optimismo desenfrenado de los teóricos y los resultados tangibles de la tecnología de la época precipitó periodos de frustración y desfinanciamiento científico conocidos como los \textbf{Inviernos de la IA} \parencite{haenlein2019brief}. El descontento se materializó formalmente a inicios de la década de 1970 \parencite{haenlein2019brief}. En 1973, el influyente \textbf{informe Lighthill} en el Reino Unido criticó severamente el progreso real de la disciplina, alegando que las capacidades de razonamiento basado en el sentido común jamás superarían el nivel de un amateur experimentado y que la complejidad computacional impedía escalar los algoritmos hacia problemas reales \parencite{haenlein2019brief}. Esto ocasionó un cese inmediato del soporte estatal europeo y norteamericano a múltiples laboratorios \parencite{haenlein2019brief}.
+
+A la par del colapso del paradigma simbólico, la rama alternativa del conexionismo ---aquella que intentaba emular la plasticidad neuronal biológica y el aprendizaje hebbiano formulado en 1949--- sufrió una muerte prematura a nivel institucional \parencite{haenlein2019brief}. En 1969, Marvin Minsky y Seymour Papert publicaron un riguroso examen matemático en el que expusieron que los perceptrones de una sola capa carecían de la potencia algebraica para resolver problemas no lineales elementales como el XOR \parencite{haenlein2019brief}. Argumentaron con éxito que los ordenadores de la época no poseían la memoria ni el poder de procesamiento necesarios para realizar el entrenamiento de redes complejas de múltiples capas ocultas, paralizando el campo conexionista durante casi dos décadas \parencite{haenlein2019brief}. Un segundo invierno similar se manifestaría a finales de los años 80 tras el agotamiento de los proyectos de quinta generación japoneses y la pérdida de interés comercial \parencite{haenlein2019brief}.
+
+\subsection{La gran transición: Del control deductivo al Machine Learning inductivo}
+
+El verdadero salto cualitativo hacia la era actual ocurrió al abandonar la obsesión de programar lógicamente cada regla cognitiva e inclinarse por el diseño de arquitecturas inductivas capaces de aprender a partir de la ingesta directa de datos de ejemplo \parencite{haenlein2019brief, zhang2023turing}. En lugar de diseñar una lógica restrictiva, los modelos conexionistas de procesamiento paralelo se configuran para ajustar de manera iterativa los pesos internos de una ecuación fundamental de activación neuronal biológicamente inspirada \parencite{zhang2023turing}:
+
+\begin{equation}
+y = f \left( \sum_{i} w_i x_i + b \right)
+\end{equation}
+
+Curiosamente, esta perspectiva orientada al aprendizaje a través del error ya había sido sugerida de manera visionaria por el propio Alan Turing en 1948 en su propuesta teórica de ``máquinas B-type desorganizadas'' \parencite{zhang2023turing}. Sin embargo, para su desarrollo práctico fue crucial inventar arquitecturas de procesamiento que superasen el modelado puramente estático de las redes neuronales artificiales \parencite{zhang2023turing}.
+
+El primer gran hito en el modelamiento asociativo y secuencial ocurrió en 1982 con la introducción de las \textbf{Redes Neuronales Recurrentes (RNN)} por parte de \textcite{zhang2023turing}, quienes atribuyen este avance fundamental a John Hopfield. Estas redes incorporaron bucles internos de retroalimentación para conservar un historial persistente de los estados anteriores, dotando al procesamiento de una memoria temporal nativa.
+
+No obstante, las RNN clásicas eran prácticamente imposibles de entrenar en secuencias largas debido a los gradientes que tendían a desvanecerse o explotar al calcular la retropropagación del error a lo largo del tiempo \parencite{zhang2023turing}. Este cuello de botella crítico fue resuelto en 1997 con el desarrollo de la arquitectura \textbf{LSTM (\textit{Long Short-Term Memory})} de Sepp Hochreiter y Jürgen Schmidhuber \parencite{zhang2023turing}. Al incorporar mecanismos internos de compuertas lógicas (\textit{gates}) dedicados a regular el flujo y la persistencia de la información en una celda de memoria constante, las LSTM permitieron modelar dependencias a largo plazo de forma matemáticamente estable, allanando el camino para los traductores automáticos de dominio de texto \parencite{zhang2023turing}.
+
+\subsection{La revolución del Deep Learning, el Big Data y la era del Transformer}
+
+La consolidación moderna del paradigma asociativo bajo el término \textbf{Deep Learning} se vio catapultada por la irrupción del \textbf{Big Data} corporativo y los saltos cuánticos en el desarrollo de hardware de cálculo masivo y paralelo, protagonizado por las \textbf{GPUs y TPUs} \parencite{haenlein2019brief, zhang2023turing}. El poder de las redes de aprendizaje profundo quedó demostrado de manera irrefutable en 2015, cuando \textbf{AlphaGo} de Google derrotó al campeón mundial en el milenario juego de Go \parencite{haenlein2019brief}. Go, cuya complejidad de ramificación exponencial hacía inútil la búsqueda de fuerza bruta empleada por Deep Blue, requería de la intuición perceptual que únicamente una red profunda alimentada con miles de jugadas podía aprender de manera inductiva \parencite{haenlein2019brief}. 
+
+Junto al éxito de sistemas discriminativos y clasificadores, la IA se adentró en su era generativa en los años siguientes mediante arquitecturas como los Autoencoders Variacionales (VAEs) en 2013 y las Redes Generativas Adversarias (GANs) en 2014 \parencite{zhang2023turing}. No obstante, la arquitectura definitiva para el escalamiento sin precedentes de la inteligencia artificial generativa se publicó en 2017 por investigadores de Google bajo el diseño del \textbf{Transformer} \parencite{zhang2023turing}. 
+
+Los Transformers superaron las limitaciones estructurales intrínsecas de las RNN y las LSTM mediante dos innovaciones estructurales esenciales:
+\begin{enumerate}
+    \item \textbf{La paralelización masiva de datos:} A diferencia de la computación paso a paso de las redes secuenciales previas, el Transformer es capaz de procesar una secuencia completa de tokens de manera simultánea, minimizando los tiempos de entrenamiento en grandes clústeres de cómputo \parencite{zhang2023turing}.
+    \item \textbf{El mecanismo de auto-atención (\textit{Self-Attention}):} Este principio permite a la red calcular de manera dinámica la influencia semántica relativa de cada token o palabra respecto a cualquier otra dentro de la secuencia completa, de manera independiente a su separación lineal en el párrafo \parencite{zhang2023turing}. La atención escalada de un Transformer se define mediante la ecuación matricial:
+    \begin{equation}
+    \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V
+    \end{equation}
+\end{enumerate}
+
+Estas innovaciones habilitaron el surgimiento de los Modelos de Lenguaje Gigantes (\textbf{LLMs}) \parencite{zhang2023turing}. Mientras BERT revolucionó las tareas de entendimiento semántico bidireccional \parencite{zhang2023turing}, la familia autoregresiva \textbf{GPT} de OpenAI evidenció el escalado de capacidades a medida que aumentaba exponencialmente el número de parámetros ajustables en sus redes neuronales: desde los 117 millones en GPT-1 (2018), 1.5 mil millones en GPT-2 (2019), 175 mil millones en GPT-3 (2020), hasta estimarse en un aproximado de 1.76 billones en GPT-4 (2023) \parencite{zhang2023turing}. 
+
+Hoy en día, las tecnologías de interfaz masiva como ChatGPT, los modelos dialógicos de última generación como LaMDA de Google, y los desarrollos de código abierto como LLaMA de Meta demuestran el éxito definitivo de esta prolongada transición estructural \parencite{zhang2023turing}: los sistemas de IA han abandonado por completo los límites de la rigidez deductiva impuesta por reglas humanas para dominar la flexibilidad matemática de los datos y el contexto del mundo real \parencite{haenlein2019brief, zhang2023turing}.
+
+\subsection{Cronología técnica: Co-evolución de los paradigmas teóricos y lenguajes de programación}
+
+Para comprender la evolución práctica de la inteligencia artificial, es necesario analizar cómo los saltos conceptuales coexistieron y forzaron el desarrollo de paradigmas de programación específicos. La implementación de ideas teóricas siempre estuvo limitada o catalizada por el nivel de abstracción y eficiencia que ofrecían los lenguajes predominantes de cada época \parencite{buchanan2005very}.
+
+A continuación, se presenta una cronología técnica estructurada. Los hitos y lenguajes están conectados visualmente mediante una línea vertical continua de flujo, ilustrando la transición desde el procesamiento puramente de símbolos lógicos hasta el cómputo matricial de alto rendimiento en dispositivos ultra-limitados:
+
+\vspace{0.4cm}
+\noindent
+\begin{longtable}{r | p{0.72\textwidth}}
+\textbf{Época y Lenguaje} & \textbf{Hito Teórico y Paradigma de Cómputo} \\
+\hline
+\endfirsthead
+\textbf{Época y Lenguaje} & \textbf{Hito Teórico y Paradigma de Cómputo (Continuación)} \\
+\hline
+\endhead
+& \\
+\textbf{1950 -- 1970} & \textbf{La Era Fundacional y la IA Simbólica} \\
+\textit{LISP (1958) e IPL} & Alan Turing redefinía los límites algorítmicos con su propuesta teórica de la Máquina Universal \parencite{zhang2023turing} y formulaba el Test de Turing en 1950 \parencite{haenlein2019brief}. Tras la histórica Conferencia de Dartmouth en 1956 \parencite{haenlein2019brief}, John McCarthy crea \textbf{LISP} (\textit{List Processing}) para dar soporte a la representación lógica declarativa y manipulación de símbolos \parencite{buchanan2005very}. LISP introdujo de manera pionera la gestión dinámica de memoria mediante la recolección de basura (\textit{garbage collection}), liberando al programador de las limitaciones de la asignación manual al codificar heurísticas complejas como el \textit{Logic Theorist} o el programa ELIZA \parencite{haenlein2019brief, buchanan2005very}. \\
+& \\
+\textbf{1970 -- 1980} & \textbf{Sistemas Basados en Conocimiento y Programación Lógica} \\
+\textit{Prolog (1972)} & Con el auge de los sistemas basados en conocimiento \parencite{buchanan2005very}, surgió la necesidad de diseñar lenguajes capaces de estructurar el razonamiento declarativo no procedimental. En 1972, Alain Colmerauer y Philippe Roussel conceptualizaron e implementaron \textbf{Prolog} como un puente de programación entre el procesamiento del lenguaje natural y la demostración automática de teoremas bajo lógica de primer orden \parencite{colmerauer1996birth}. Este paradigma declarativo permitió a los ingenieros definir dominios complejos mediante hechos y reglas lógicas ---dejando la computación en manos de un motor de inferencia interno basado en resolución---, marcando la era de los sistemas expertos y convirtiéndose más tarde en la base del Proyecto de la Quinta Generación japonesa en los años 80 \parencite{haenlein2019brief, colmerauer1996birth}. \\
+& \\
+\textbf{1980 -- 2000} & \textbf{El Renacimiento Conexionista y el Imperativo de la Eficiencia} \\
+\textit{C / C++} & Teorías tempranas como las redes recurrentes de Hopfield (1982) \parencite{zhang2023turing} y la arquitectura LSTM (1997) \parencite{zhang2023turing} marcaron el regreso de las redes neuronales artificiales. No obstante, el cálculo asociativo de múltiples capas requería un control estricto de la memoria física y un rendimiento de hardware óptimo \parencite{haenlein2019brief}. Los lenguajes imperativos \textbf{C} y \textbf{C++} desplazaron gradualmente a los lenguajes simbólicos antiguos, al ser capaces de interactuar directamente con el hardware y optimizar el cálculo de matrices y la búsqueda masiva en árboles lógicos, hito ejemplificado por la victoria de Deep Blue de IBM en 1997 \parencite{haenlein2019brief, buchanan2005very}. \\
+& \\
+\textbf{2000 -- Presente} & \textbf{La Era de los Datos, Aprendizaje Profundo y TinyML} \\
+\textit{Python y C++} & El auge del \textit{Big Data} y el entrenamiento de modelos de escala billonaria (como la arquitectura Transformer en 2017 \parencite{zhang2023turing} y los modernos LLMs \parencite{zhang2023turing}) consolidaron a \textbf{Python} como el estándar absoluto del \textit{Machine Learning}. Su sintaxis limpia de alto nivel encapsula potentes bibliotecas optimizadas en C++ (como TensorFlow y PyTorch) que delegan el cálculo masivo de tensores a las GPUs/TPUs \parencite{zhang2023turing}. Paralelamente, la llegada de TinyML y la necesidad de ejecutar inferencias profundas en microcontroladores ultra-limitados revivió el uso de micro-compiladores estáticos en \textbf{C y C++} (como TFLite Micro o CMSIS-NN) para optimizar el silicio al extremo sin requerir un sistema operativo subyacente. \\
+\end{longtable}
+\vspace{0.4cm}
+
+\section{Análisis de la transición hacia el Machine Learning y TinyML}
+
+\subsection{El despertar del conexionismo: De la utopía teórica a la viabilidad computacional}
+
+La viabilidad matemática de modelar el aprendizaje predictivo mediante redes conexionistas complejas ya había sido propuesta teóricamente desde mediados del siglo XX. Sin embargo, durante décadas estas ideas permanecieron archivadas como meras curiosidades conceptuales debido a una limitación física e ingenieril fundamental: la ausencia de hardware capaz de procesar las masivas demandas de álgebra lineal de estos algoritmos \parencite{dally2021evolution}. Los microprocesadores convencionales (CPUs), optimizados para una ejecución secuencial rápida de instrucciones complejas, resultaban ineficientes ante los miles de millones de multiplicaciones matriciales simultáneas que requiere el entrenamiento y la propagación de errores en una red neuronal profunda de múltiples capas ocultas. 
+
+El verdadero despertar de las arquitecturas conexionistas profundas, que marcó el nacimiento de la era moderna del \textit{Deep Learning}, se consolidó en 2012 con la irrupción del modelo AlexNet en el desafío ImageNet \parencite{krizhevsky2012imagenet}. El éxito sin precedentes de AlexNet demostró que el uso de hardware de procesamiento masivamente paralelo, específicamente las unidades de procesamiento gráfico (GPUs), permitía reducir los tiempos de entrenamiento de redes convolucionales complejas de meses a solo unos días \parencite{krizhevsky2012imagenet, dally2021evolution}. Este hito evidenció que el éxito del aprendizaje profundo no radicaba exclusivamente en el descubrimiento de nuevos marcos teóricos, sino en la disponibilidad de una infraestructura de cómputo capaz de procesar operaciones matriciales intensivas en un tiempo comercialmente viable \parencite{dally2021evolution}.
+
+\subsection{La paradoja de la eficiencia: La transición desde el clúster hasta el silicio embebido}
+
+Si bien el florecimiento inicial del \textit{Deep Learning} se sustentó en el escalamiento masivo del cómputo alojado en la nube (centros de datos equipados con clústeres de GPUs y TPUs), la proliferación de dispositivos embebidos y la Internet de las Cosas (IoT) introdujeron una nueva paradoja arquitectónica. El paradigma centralizado del almacenamiento y procesamiento en la nube presenta cuellos de botella críticos relacionados con la latencia de red, el consumo excesivo de ancho de banda, la privacidad de datos personales sensibles y, sobre todo, un consumo energético insostenible en aplicaciones de campo extremo \parencite{capogrosso2023machine}.
+
+Como respuesta a estas limitaciones surge \textbf{TinyML} (y su evolución natural hacia redes complejas, \textbf{TinyDL}), una disciplina orientada a habilitar la ejecución de modelos de \textit{Machine Learning} y \textit{Deep Learning} directamente en microcontroladores (MCUs) y hardware embebido de consumo energético ultra-bajo, operando típicamente en el rango de los milivatios o microvatios \parencite{somvanshi2025tiny, ray2022review}. La transición hacia TinyML representa una descentralización radical del cómputo: las capacidades cognitivas y predictivas se integran directamente en el sensor layer donde ocurren los eventos físicos (como acelerómetros, sensores de sonido u ópticos de baja resolución), reduciendo a cero la dependencia de una conectividad externa constante y la potencia de transmisión de radio \parencite{capogrosso2023machine, ray2022review}.
+
+\subsection{Tácticas de co-diseño: Optimización algorítmica y cuantización en TinyML}
+
+La implementación de redes neuronales profundas en microcontroladores que disponen únicamente de unos pocos kilobytes de memoria SRAM y de almacenamiento Flash impone restricciones de recursos extremadamente severas. Esto obliga a concebir el diseño como un desafío multidisciplinar de co-diseño \textit{hardware-software} \parencite{capogrosso2023machine}. Mientras que los modelos en centros de datos operan con aritmética de punto flotante de alta precisión de 32 bits (FP32), el hardware de TinyML requiere de una compresión profunda del tamaño de las redes mediante optimizaciones algorítmicas \parencite{somvanshi2025tiny}.
+
+Entre estas tácticas destaca la \textbf{cuantización}, un proceso matemático que proyecta los pesos y las activaciones de la red desde formatos continuos FP32 a enteros de baja precisión, comúnmente enteros de 8 bits (INT8) o formatos de sub-byte \parencite{somvanshi2025tiny}. Matemáticamente, la cuantización uniforme afín se define mediante la ecuación:
+
+\begin{equation}
+q = \text{round}\left(\frac{r}{S}\right) + Z
+\end{equation}
+
+Donde $r$ representa la variable de entrada real en punto flotante, $S$ es un factor de escala continuo que define el tamaño del paso de cuantización, $Z$ es un entero de compensación de punto cero (\textit{zero-point}) que asegura la correspondencia exacta con el cero real, y $q$ es el valor entero resultante cuantizado \parencite{somvanshi2025tiny}. Esta simplificación del formato numérico no solo comprime el espacio de almacenamiento del modelo en Flash en un factor de $4\times$, sino que permite que los microcontroladores realicen inferencias aritméticas de enteros rápidas utilizando registros genéricos, omitiendo la necesidad de una unidad de punto flotante (FPU) de alto costo energético \parencite{somvanshi2025tiny}.
+
+A la cuantización se añaden técnicas complementarias como la \textbf{poda de parámetros (\textit{pruning})}, encargada de eliminar las conexiones sinápticas redundantes cuyos pesos numéricos aportan una varianza marginal a la salida final \parencite{somvanshi2025tiny}, y la \textbf{Búsqueda de Arquitecturas Neuronales (NAS)}, que automatiza el descubrimiento de topologías neuronales óptimas y adaptadas geométricamente a las limitaciones específicas de SRAM de cada procesador embebido \parencite{capogrosso2023machine, somvanshi2025tiny}. De este modo, TinyML redefine las fronteras de la inteligencia en el borde extremo, demostrando que la eficiencia algorítmica y la optimización del silicio pueden democratizar la IA en dispositivos de vida autónoma y aislada \parencite{somvanshi2025tiny, ray2022review}.
+
+\section{Conclusión}
+
+En conclusión, la historia de la inteligencia artificial nos demuestra que su evolución no ha sido un camino de descubrimientos aislados, sino el resultado de cómo las ideas del pasado tuvieron que esperar a que el hardware estuviera listo. El gran acierto de la disciplina fue dejar atrás la rigidez de los sistemas basados en reglas lógicas escritas a mano para adoptar el enfoque del Machine Learning, permitiendo que las computadoras aprendan de manera autónoma a través de los datos. Esto es lo que finalmente permitió resolver tareas complejas de percepción, como reconocer voz o imágenes, que antes parecían imposibles.
+
+Sin embargo, el éxito de los modelos gigantes en la nube nos ha llevado a un punto donde el consumo de energía y la dependencia de grandes servidores están al límite. Es aquí donde TinyML y la optimización de algoritmos se vuelven fundamentales. Al aplicar técnicas como la cuantización (que simplifica los números para ahorrar memoria) y la poda de parámetros, hemos aprendido que no siempre necesitamos supercomputadoras para tener sistemas inteligentes. Al final, el verdadero futuro de la IA no se limita a construir modelos cada vez más grandes en la nube, sino en lograr que sean eficientes, sostenibles y capaces de funcionar de manera autónoma en los dispositivos sencillos y cotidianos que nos rodean.
+
+\newpage
+
+\printbibliography
+
+\end{document}

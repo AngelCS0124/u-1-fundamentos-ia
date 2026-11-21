@@ -1,0 +1,17 @@
+research_task:
+  description: >
+    Realiza un busqueda profunda sobre {topic}
+    Asegurate de proporcionar informacion relevante y reciente publicada en el año actual
+    , el año actual es {current_year}.
+  expected_output: >
+    Una lista con los 10 puntos más relevantes sobre el tema.
+  agent: researcher
+
+reporting_task:
+  description: >
+    Revisa el contexto recibido y con los puntos recibidos genera una noticia sobre el {topic}
+    , tiene que ser llamativa y hacer relevante la informacion aqui mostrada, dando los datos más importantes.
+  expected_output: >
+    Una noticia informativa sobre el tema {topic} que llame la antencion a los usuarios.
+    Formatted as markdown without '```'
+  agent: reporting_analyst

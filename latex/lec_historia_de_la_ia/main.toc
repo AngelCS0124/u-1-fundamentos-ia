@@ -1,0 +1,14 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción}{2}{}%
+\contentsline {section}{\numberline {2}Desarrollo cronológico de la IA}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Bases teóricas y el Test de Turing: La conceptualización de la Máquina Universal}{2}{}%
+\contentsline {subsection}{\numberline {2.2}La era de la IA Simbólica y el paradigma de las reglas explícitas (Top-Down)}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Expectativas desmedidas y colapso financiero: Los Inviernos de la IA}{4}{}%
+\contentsline {subsection}{\numberline {2.4}La gran transición: Del control deductivo al Machine Learning inductivo}{5}{}%
+\contentsline {subsection}{\numberline {2.5}La revolución del Deep Learning, el Big Data y la era del Transformer}{6}{}%
+\contentsline {subsection}{\numberline {2.6}Cronología técnica: Co-evolución de los paradigmas teóricos y lenguajes de programación}{7}{}%
+\contentsline {section}{\numberline {3}Análisis de la transición hacia el Machine Learning y TinyML}{10}{}%
+\contentsline {subsection}{\numberline {3.1}El despertar del conexionismo: De la utopía teórica a la viabilidad computacional}{10}{}%
+\contentsline {subsection}{\numberline {3.2}La paradoja de la eficiencia: La transición desde el clúster hasta el silicio embebido}{10}{}%
+\contentsline {subsection}{\numberline {3.3}Tácticas de co-diseño: Optimización algorítmica y cuantización en TinyML}{11}{}%
+\contentsline {section}{\numberline {4}Conclusión}{12}{}%
